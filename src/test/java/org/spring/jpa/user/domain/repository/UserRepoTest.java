@@ -12,10 +12,10 @@ import org.spring.jpa.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -49,32 +49,30 @@ public class UserRepoTest extends SpringBaseTest {
     }
 
     @Test
-    @DataSet("db/datasets/users.yml")
-    void findUserByEmailTest(){
+    @DataSet("db/datasets/users.xml")
+    void findUserByEmailTest() {
         Optional<User> result = userRepo.findByEmail("admin@email.com");
-
-        assertNotNull(result);
+        assertThat(result).isPresent();
     }
 
     @Test
     @DataSet("db/datasets/users.yml")
-    @ExportDataSet(format = DataSetFormat.XML,outputName="target/exported/xml/allTables.xml")
-    void findAllUsers(){
+    @ExportDataSet(format = DataSetFormat.XML, outputName = "target/exported/xml/allTables.xml")
+    void findAllUsers() {
         List<User> result = userRepo.findAll();
         assertNotNull(result);
 
         assertThat(result.size()).isEqualTo(3);
 
         assertThat(result.stream().filter(user -> user.getEmail()
-                        .equals("admin@email.com"))).isNotNull();
+                .equals("admin@email.com"))).isNotNull();
     }
-
 
 
     @Test
     @Transactional
 //    @ExpectedDataSet("expected_datasets/expected_users.yml")
-    void addUser(){
+    void addUser() {
         userRepo.save(user);
         assertThat(userRepo.findByEmail(user.getEmail())).isPresent();
         TestTransaction.flagForCommit();
@@ -82,7 +80,7 @@ public class UserRepoTest extends SpringBaseTest {
     }
 
     @Test
-    void testFindUserMock(){
+    void testFindUserMock() {
 //        when(userRepoMock.findByEmail(any(String.class))).thenThrow(new RuntimeException("User not found"));
         when(userRepoMock.findByEmail("badword@email.com")).thenThrow(new RuntimeException("User not found"));
         assertThat(userRepoMock.findByEmail("admin@email.com")).isNotNull();
@@ -93,12 +91,11 @@ public class UserRepoTest extends SpringBaseTest {
 
     @Transactional
     @Test
-    void testFindUserEntityManager(){
+    void testFindUserEntityManager() {
         entityManager.persist(user);
-        User result = entityManager.find(User.class,user.getId());
+        User result = entityManager.find(User.class, user.getId());
         assertThat(result.getEmail()).contains("bob@email.com");
     }
-
 
 
 }
