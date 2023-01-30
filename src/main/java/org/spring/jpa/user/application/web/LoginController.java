@@ -1,5 +1,6 @@
 package org.spring.jpa.user.application.web;
 
+import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.service.UserService;
 import org.spring.jpa.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(String email, String password) {
+    public String login(String email, String password) throws UserNotFoundException {
         User result = userService.authUser(email, password);
         if (result != null) {
             return "homepage";
