@@ -53,6 +53,8 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 
 - Login page functionality is not yet implemented but basic query is already implemented in the `UserRepository`
 - Registration page functionality is not yet implemented
+- H2 or hsqldb?
+- H2 for unit test
 
 # Todo
 - Add test container for integration testing
