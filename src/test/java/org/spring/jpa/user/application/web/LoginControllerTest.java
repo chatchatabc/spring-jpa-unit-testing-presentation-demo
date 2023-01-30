@@ -1,21 +1,36 @@
 package org.spring.jpa.user.application.web;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.github.database.rider.core.api.dataset.DataSet;
 import org.junit.jupiter.api.Test;
+import org.spring.jpa.user.SpringBaseTest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-class LoginControllerTest {
+@AutoConfigureMockMvc
+class LoginControllerTest extends SpringBaseTest {
 
-    @BeforeEach
-    void setUp() {
-    }
+    @Autowired
+    private MockMvc mockMvc;
 
-    @AfterEach
-    void tearDown() {
+    @Test
+    void testLoginPage() throws Exception {
+        this.mockMvc.perform(get("/login")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    void login() {
+    @DataSet("db/datasets/users.xml")
+    void testDoLogin() throws Exception {
+        this.mockMvc.perform(post("/login").param("email", "admin@email.com").param("password", "123"))
+                .andExpect(view().name("homepage"));
+        this.mockMvc.perform(post("/login").param("email", "admin@email.com").param("password", "1234"))
+                .andExpect(view().name("login"));
     }
 }
