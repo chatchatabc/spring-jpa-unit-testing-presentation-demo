@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="user" type="org.spring.jpa.user.domain.model.User"*/-->
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-Success
+Welcome <span th:text="${user.username}">Name</span>
 </body>
 </html>
