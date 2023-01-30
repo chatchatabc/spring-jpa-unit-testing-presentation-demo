@@ -49,7 +49,7 @@ public class UserRepoTest extends SpringBaseTest {
     }
 
     @Test
-    @DataSet("users.yml")
+    @DataSet("db/datasets/users.yml")
     void findUserByEmailTest(){
         Optional<User> result = userRepo.findByEmail("admin@email.com");
 
@@ -57,7 +57,7 @@ public class UserRepoTest extends SpringBaseTest {
     }
 
     @Test
-    @DataSet("users.yml")
+    @DataSet("db/datasets/users.yml")
     @ExportDataSet(format = DataSetFormat.XML,outputName="target/exported/xml/allTables.xml")
     void findAllUsers(){
         List<User> result = userRepo.findAll();
