@@ -55,6 +55,8 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 - Registration page functionality is not yet implemented
 - H2 or hsqldb?
 - H2 for unit test
+- [Data Faker](https://github.com/datafaker-net/datafaker/)
+- javax validation
 
 # Todo
 - Add test container for integration testing
