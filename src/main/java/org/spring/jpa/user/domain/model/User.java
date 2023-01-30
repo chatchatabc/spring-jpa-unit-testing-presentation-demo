@@ -23,6 +23,7 @@ public class User {
     private String email;
 
 
+    // todo why add this?
     @Override
     public int hashCode() {
         return getClass().hashCode();
