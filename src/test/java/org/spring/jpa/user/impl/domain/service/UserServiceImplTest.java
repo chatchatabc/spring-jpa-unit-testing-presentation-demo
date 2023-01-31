@@ -39,7 +39,7 @@ public class UserServiceImplTest extends SpringBaseTest {
     public void createUserTest() {
         User user = new User();
         user.setUsername("josh");
-        user.setEmail("josh@email.com");
+        user.setEmail("josh@example.com");
         user.setPassword("123");
         when(userServiceMock.registerUser(user)).thenReturn(1000L);
         assertThat(userServiceMock.registerUser(user)).isEqualTo(1000L);
