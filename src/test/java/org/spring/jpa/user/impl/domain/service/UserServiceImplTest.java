@@ -8,7 +8,7 @@ import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
