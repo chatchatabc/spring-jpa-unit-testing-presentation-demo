@@ -53,7 +53,7 @@ public class UserRepoTest extends SpringBaseTest {
     }
 
     @Test
-    @DataSet("db/datasets/users.yml")
+    @DataSet("db/datasets/users.xml")
     @ExportDataSet(format = DataSetFormat.XML, outputName = "target/exported/xml/allTables.xml")
     void findAllUsers() {
         List<User> result = userRepo.findAll();
