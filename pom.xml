@@ -19,7 +19,6 @@
         <!-- Test -->
         <rider-spring.version>1.35.0</rider-spring.version>
         <instancio-junit.version>2.6.0</instancio-junit.version>
-        <hsqldb.version>2.7.1</hsqldb.version>
     </properties>
     <dependencies>
         <dependency>
@@ -93,11 +92,10 @@
             <version>${instancio-junit.version}</version>
             <scope>test</scope>
         </dependency>
-
+        
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
 
