@@ -1,6 +1,10 @@
 package org.spring.jpa.user.domain.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Getter
@@ -17,11 +21,14 @@ public class User {
     private long id;
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+    /**
+     * password hash with SHA-1: plain password + salt
+     */
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "salt", nullable = false)
     private String salt;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-    
+
 }
