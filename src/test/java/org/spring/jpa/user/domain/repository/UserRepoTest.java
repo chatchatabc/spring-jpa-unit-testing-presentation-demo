@@ -17,10 +17,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -60,12 +57,10 @@ public class UserRepoTest extends SpringBaseTest {
     @ExportDataSet(format = DataSetFormat.XML, outputName = "target/exported/xml/allTables.xml")
     void findAllUsers() {
         List<User> result = userRepo.findAll();
-        assertNotNull(result);
+        assertThat(result).hasSize(3);
 
         assertThat(result.size()).isEqualTo(3);
-
-        assertThat(result.stream().filter(user -> user.getEmail()
-                .equals("admin@email.com"))).isNotNull();
+        assertThat(result).filteredOn(user -> user.getEmail().equals("admin@email.com")).isNotEmpty();
     }
 
 
