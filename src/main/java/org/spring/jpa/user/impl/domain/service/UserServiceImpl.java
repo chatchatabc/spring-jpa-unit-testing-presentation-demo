@@ -32,7 +32,8 @@ public class UserServiceImpl implements UserService {
         return null;*/
     }
 
-    public String registerUser(User user) {
-        return "";
+    public Long registerUser(User user) {
+        userRepo.save(user);
+        return user.getId();
     }
 }
