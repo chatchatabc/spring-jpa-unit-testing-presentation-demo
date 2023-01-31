@@ -21,11 +21,5 @@ public class User {
     private String password;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
-
-
-    // todo why add this?
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    
 }
