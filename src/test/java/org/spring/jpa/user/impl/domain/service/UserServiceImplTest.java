@@ -19,7 +19,7 @@ public class UserServiceImplTest extends SpringBaseTest {
 
     @Mock
     UserService userServiceMock = mock(UserService.class);
-    
+
     @Test
     public void sampleTest() {
         String actualVal = "tet123";
@@ -41,8 +41,8 @@ public class UserServiceImplTest extends SpringBaseTest {
         user.setUsername("josh");
         user.setEmail("josh@email.com");
         user.setPassword("123");
-        when(userServiceMock.registerUser(user)).thenReturn("User: " + user.getUsername() + " created successfully");
-        assertThat(userServiceMock.registerUser(user)).contains("josh");
+        when(userServiceMock.registerUser(user)).thenReturn(1000L);
+        assertThat(userServiceMock.registerUser(user)).isEqualTo(1000L);
         verify(userServiceMock).registerUser(user);
     }
 
