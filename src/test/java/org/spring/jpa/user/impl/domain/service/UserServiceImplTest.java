@@ -4,6 +4,7 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.spring.jpa.user.SpringBaseTest;
+import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class UserServiceImplTest extends SpringBaseTest {
 
     @Test
     @DataSet("db/datasets/users.xml")
-    public void authUserTest() throws Exception {
+    public void authUserTest() throws UserNotFoundException {
         assertNotNull(userService.authUser("admin@email.com", "123"));
     }
 

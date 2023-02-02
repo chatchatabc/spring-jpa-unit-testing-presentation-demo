@@ -1,5 +1,0 @@
-users:
-  - id: 1
-    username: "bob"
-    password: "123"
-    email: "bob@email.com"

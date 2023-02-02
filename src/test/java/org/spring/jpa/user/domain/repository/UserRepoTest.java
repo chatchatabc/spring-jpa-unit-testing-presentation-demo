@@ -2,12 +2,14 @@ package org.spring.jpa.user.domain.repository;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.DataSetFormat;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.core.api.exporter.ExportDataSet;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Spy;
 import org.spring.jpa.user.SpringBaseTest;
+import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.transaction.TestTransaction;
@@ -48,8 +50,8 @@ public class UserRepoTest extends SpringBaseTest {
     @Test
     @DataSet("db/datasets/users.xml")
     void findUserByEmailTest() {
-        Optional<User> result = userRepo.findByEmail("admin@email.com");
-        assertThat(result).isPresent();
+        Optional<User> result = userRepo.findByEmail("admin@example.com");
+        assertThat(result.isEmpty()).isFalse();
     }
 
     @Test
@@ -57,7 +59,6 @@ public class UserRepoTest extends SpringBaseTest {
     @ExportDataSet(format = DataSetFormat.XML, outputName = "target/exported/xml/allTables.xml")
     void findAllUsers() {
         List<User> result = userRepo.findAll();
-        assertThat(result).hasSize(3);
 
         assertThat(result.size()).isEqualTo(3);
         assertThat(result).filteredOn(user -> user.getEmail().equals("admin@email.com")).isNotEmpty();
@@ -66,7 +67,7 @@ public class UserRepoTest extends SpringBaseTest {
 
     @Test
     @Transactional
-//    @ExpectedDataSet("expected_datasets/expected_users.yml")
+    @ExpectedDataSet("expected_datasets/expected_users.xml")
     void addUser() {
         userRepo.save(user);
         assertThat(userRepo.findByEmail(user.getEmail())).isPresent();
@@ -76,10 +77,10 @@ public class UserRepoTest extends SpringBaseTest {
 
     @Test
     void testFindUserMock() {
-//        when(userRepoMock.findByEmail(any(String.class))).thenThrow(new RuntimeException("User not found"));
-        when(userRepoMock.findByEmail("badword@email.com")).thenThrow(new RuntimeException("User not found"));
+//        when(userRepoMock.findByEmail(any(String.class))).thenThrow(new UserNotFoundException("User not found"));
+        when(userRepoMock.findByEmail("badword@email.com")).thenThrow(new UserNotFoundException("User not found"));
         assertThat(userRepoMock.findByEmail("admin@email.com")).isNotNull();
-        assertThatThrownBy(() -> userRepoMock.findByEmail("badword@email.com")).isInstanceOf(RuntimeException.class);
+        assertThatThrownBy(() -> userRepoMock.findByEmail("badword@email.com")).isInstanceOf(UserNotFoundException.class);
         verify(userRepoMock).findByEmail("badword@email.com");
         assertThatCode(() -> userRepoMock.findByEmail("badword@email.com")).doesNotThrowAnyException();
     }
