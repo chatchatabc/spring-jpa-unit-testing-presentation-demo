@@ -41,7 +41,6 @@ public class UserRepoTest extends SpringBaseTest {
 
     }
 
-
     @Autowired
     private UserRepoTest(UserRepo userRepo) {
         this.userRepo = userRepo;

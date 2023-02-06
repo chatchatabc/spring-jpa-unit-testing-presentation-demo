@@ -3,6 +3,6 @@
 
 <dataset>
     <!-- plain password is 123, password hash with sha-1 -->
-    <users id="1" username="admin" password="123" salt="2i3u423" email="admin@example.com"/>
+    <users id="1" username="admin" password="0cfd526ce97ce87d7aea72941aa83fcd8f7ac2a1" salt="2i3u423" email="admin@example.com"/>
 
 </dataset>

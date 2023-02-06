@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class LoginController {
+public class UserController {
 
     private final UserService userService;
 
     @Autowired
-    public LoginController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -26,6 +26,22 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(String email, String password, Model model) {
+        try {
+            final User user = userService.authUser(email, password);
+            model.addAttribute("user", user);
+            return "homepage";
+        } catch (UserNotFoundException e) {
+            return "login";
+        }
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "login";
+    }
+
+    @PostMapping("/register")
+    public String register(String email, String password, Model model) {
         try {
             final User user = userService.authUser(email, password);
             model.addAttribute("user", user);

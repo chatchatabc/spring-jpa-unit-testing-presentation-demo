@@ -4,6 +4,7 @@ import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.repository.UserRepo;
 import org.spring.jpa.user.domain.service.UserService;
+import org.spring.jpa.user.util.PassCipher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,17 @@ public class UserServiceImpl implements UserService {
 
     UserRepo userRepo;
 
+    PassCipher passCipher;
+
     @Autowired
-    private UserServiceImpl(UserRepo userRepo) {
+    private UserServiceImpl(UserRepo userRepo, PassCipher passCipher) {
         this.userRepo = userRepo;
+        this.passCipher = passCipher;
     }
 
     public User authUser(String email, String password) throws UserNotFoundException {
         return userRepo.findByEmail(email)
-                .map(user -> user.getPassword().equals(password) ? user : null)
+                .map(user -> passCipher.matches(password, user.getPassword(), user.getSalt()) ? user : null)
                 .orElseThrow(() -> new UserNotFoundException("User not found: " + email));
        /* if (result.isPresent()) {
             User user = result.get();
@@ -29,11 +33,14 @@ public class UserServiceImpl implements UserService {
         } else {
             throw new UserNotFoundException("User not found: " + email);
         }
-        return null;*/
+        return null; */
     }
 
     public Long registerUser(User user) {
+
         userRepo.save(user);
         return user.getId();
     }
+
+
 }

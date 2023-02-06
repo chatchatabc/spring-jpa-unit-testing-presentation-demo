@@ -33,7 +33,7 @@ public class UserServiceImplTest extends SpringBaseTest {
     @Test
     @DataSet("db/datasets/users.xml")
     public void authUserTest() throws UserNotFoundException {
-        assertNotNull(userService.authUser("admin@email.com", "123"));
+        assertNotNull(userService.authUser("admin@example.com", "123"));
     }
 
     @Test
