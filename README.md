@@ -60,6 +60,12 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 
 # Todo
 - Add test container for integration testing
+- database naming: `user-list`
+- Maven wrapper jar absent
+- flyway migration location
+- comment for `application.properties`
+- users.xml
+
 
 # References
  - [Thymeleaf](https://www.baeldung.com/thymeleaf-in-spring-mvc)
