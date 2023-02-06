@@ -1,6 +1,6 @@
 package org.spring.jpa.user.impl.util;
 
-import org.spring.jpa.user.util.PassCipher;
+import org.spring.jpa.user.util.EncryptionUtils;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 
 @Service
-public class PassCipherImpl implements PassCipher {
+public class EncryptionUtilsImpl implements EncryptionUtils {
 
     private static final int SALT_LENGTH = 32;
 

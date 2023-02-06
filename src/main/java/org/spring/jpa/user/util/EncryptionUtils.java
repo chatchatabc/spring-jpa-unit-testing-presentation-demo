@@ -1,6 +1,6 @@
 package org.spring.jpa.user.util;
 
-public interface PassCipher {
+public interface EncryptionUtils {
 
     String encrypt(String password);
 
