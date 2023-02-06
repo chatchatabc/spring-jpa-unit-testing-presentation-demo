@@ -1,6 +1,6 @@
-package org.spring.jpa.user.impl.util;
+package org.spring.jpa.user.impl.application.web.security;
 
-import org.spring.jpa.user.util.EncryptionUtils;
+import org.spring.jpa.user.application.web.security.EncryptionUtils;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 @Service
 public class EncryptionUtilsImpl implements EncryptionUtils {
 
-    private static final int SALT_LENGTH = 32;
+    private static final int SALT_LENGTH = 6;
 
     public String encrypt(String password) {
         try {

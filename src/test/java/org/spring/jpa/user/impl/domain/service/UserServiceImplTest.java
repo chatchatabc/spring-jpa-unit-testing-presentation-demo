@@ -4,6 +4,7 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.spring.jpa.user.SpringBaseTest;
+import org.spring.jpa.user.domain.error.UserAlreadyExistException;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.service.UserService;
@@ -37,14 +38,24 @@ public class UserServiceImplTest extends SpringBaseTest {
     }
 
     @Test
-    public void createUserTest() {
+    public void registerUserTest() {
         User user = new User();
         user.setUsername("josh");
         user.setEmail("josh@example.com");
         user.setPassword("123");
-        when(userServiceMock.registerUser(user)).thenReturn(1000L);
-        assertThat(userServiceMock.registerUser(user)).isEqualTo(1000L);
-        verify(userServiceMock).registerUser(user);
+
+//        assertThat(userService.registerUser(user)).;
+    }
+
+    @Test
+    public void mockCreateUserTest() {
+        User user = new User();
+        user.setUsername("josh");
+        user.setEmail("josh@example.com");
+        user.setPassword("123");
+        when(userServiceMock.mockMethod(user)).thenReturn(1000L);
+        assertThat(userServiceMock.mockMethod(user)).isEqualTo(1000L);
+        verify(userServiceMock).mockMethod(user);
     }
 
 }

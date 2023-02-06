@@ -1,4 +1,4 @@
-package org.spring.jpa.user.util;
+package org.spring.jpa.user.application.web.security;
 
 public interface EncryptionUtils {
 
