@@ -9,7 +9,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 class EncryptionUtilsTest extends SpringBaseTest {
 
 
-    EncryptionUtils encryptionUtils;
+    final EncryptionUtils encryptionUtils;
 
     @Autowired
     private EncryptionUtilsTest(EncryptionUtils encryptionUtils) {

@@ -2,7 +2,6 @@ package org.spring.jpa.user.domain.repository;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.DataSetFormat;
-import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.core.api.exporter.ExportDataSet;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +11,6 @@ import org.spring.jpa.user.SpringBaseTest;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.transaction.TestTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -25,7 +23,7 @@ import static org.mockito.Mockito.when;
 
 public class UserRepoTest extends SpringBaseTest {
 
-    UserRepo userRepo;
+    final UserRepo userRepo;
     @Spy
     UserRepo userRepoMock;
 
@@ -66,12 +64,9 @@ public class UserRepoTest extends SpringBaseTest {
 
     @Test
     @Transactional
-    @ExpectedDataSet("expected_datasets/expected_users.xml")
     void addUser() {
         userRepo.save(user);
         assertThat(userRepo.findByEmail(user.getEmail())).isPresent();
-        TestTransaction.flagForCommit();
-        TestTransaction.end();
     }
 
     @Test

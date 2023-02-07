@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserRepo userRepo;
+    final UserRepo userRepo;
 
-    EncryptionUtils encryptionUtils;
+    final EncryptionUtils encryptionUtils;
 
     @Autowired
     private UserServiceImpl(UserRepo userRepo, EncryptionUtils encryptionUtils) {

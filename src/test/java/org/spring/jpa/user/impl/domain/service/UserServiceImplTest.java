@@ -20,7 +20,7 @@ public class UserServiceImplTest extends SpringBaseTest {
     private UserServiceImpl userService;
 
     @Mock
-    UserService userServiceMock = mock(UserService.class);
+    final UserService userServiceMock = mock(UserService.class);
 
     @Test
     public void sampleTest() {

@@ -9,5 +9,6 @@ public interface UserService {
 
     User registerUser(User user) throws UserAlreadyExistException;
 
+    @SuppressWarnings("SameReturnValue")
     Long mockMethod(User user);
 }
