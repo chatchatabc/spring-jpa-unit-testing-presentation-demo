@@ -50,21 +50,11 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
  4. Build then run the application (Automatically creates table needed to store data if it does not exist)
     
 # Issues
-
-- Login page functionality is not yet implemented but basic query is already implemented in the `UserRepository`
-- Registration page functionality is not yet implemented
-- H2 or hsqldb?
-- H2 for unit test
 - [Data Faker](https://github.com/datafaker-net/datafaker/)
 - javax validation
 
 # Todo
 - Add test container for integration testing
-- database naming: `user-list`
-- Maven wrapper jar absent
-- flyway migration location
-- comment for `application.properties`
-- users.xml
 
 
 # References
