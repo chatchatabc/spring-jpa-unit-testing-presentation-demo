@@ -25,7 +25,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login() {
         return "login";
     }
@@ -63,7 +63,7 @@ public class UserController {
             }
             return "homepage";
         } catch (UserAlreadyExistException e) {
-            return "registration";
+            return "error";
         }
     }
 

@@ -3,5 +3,5 @@
 
 <dataset>
     <!-- plain password is 123, password hash with sha-1 -->
-    <users id="1" email="admin@example.com" password="0cfd526ce97ce87d7aea72941aa83fcd8f7ac2a1" salt="2i3u423" username="admin"  />
+    <users id="1" email="admin@example.com" password="d622dd12c668d5b3f1c68b612236b72b32252ac0" salt="2i3u423" username="admin"  />
 </dataset>
