@@ -51,7 +51,7 @@ public class UserController {
     public String register(@ModelAttribute("user") UserRegistrationVO userRegistrationVO) {
         try {
             if(userRegistrationVO.getPassword().equals(userRegistrationVO.getMatchingPassword())){
-                final String salt = encryptionUtils.getSalt();
+                final String salt = encryptionUtils.generateSalt();
                 User user = new User();
                 user.setEmail(userRegistrationVO.getEmail());
                 user.setPassword(encryptionUtils.encrypt(userRegistrationVO.getPassword(), salt));

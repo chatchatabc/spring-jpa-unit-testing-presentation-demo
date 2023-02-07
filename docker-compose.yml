@@ -4,6 +4,6 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
-      - POSTGRES_DB=user-list
+      - POSTGRES_DB=user_list
     ports:
       - 5432:5432

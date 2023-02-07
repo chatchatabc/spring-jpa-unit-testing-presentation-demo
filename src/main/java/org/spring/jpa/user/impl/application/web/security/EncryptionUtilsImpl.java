@@ -39,7 +39,7 @@ public class EncryptionUtilsImpl implements EncryptionUtils {
         }
     }
 
-    public String getSalt() {
+    public String generateSalt() {
         if (SALT_LENGTH < 1) throw new IllegalArgumentException();
 
         StringBuilder sb = new StringBuilder(SALT_LENGTH);

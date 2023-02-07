@@ -20,7 +20,7 @@ class EncryptionUtilsTest extends SpringBaseTest {
     @Test
     void encryptTest() {
         String password = "123";
-        assertThat(encryptionUtils.encrypt(password, encryptionUtils.getSalt()).isEmpty()).isFalse();
+        assertThat(encryptionUtils.encrypt(password, encryptionUtils.generateSalt()).isEmpty()).isFalse();
 
     }
 }
