@@ -4,13 +4,13 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.spring.jpa.user.SpringBaseTest;
-import org.spring.jpa.user.domain.error.UserAlreadyExistException;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.BDDAssertions.thenCode;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -42,9 +42,9 @@ public class UserServiceImplTest extends SpringBaseTest {
         User user = new User();
         user.setUsername("josh");
         user.setEmail("josh@example.com");
-        user.setPassword("123");
-
-//        assertThat(userService.registerUser(user)).;
+        user.setPassword("yx4u1ul17soy");
+        user.setSalt("42BB619C");
+        thenCode(() -> System.out.println(userService.registerUser(user))).doesNotThrowAnyException();
     }
 
     @Test

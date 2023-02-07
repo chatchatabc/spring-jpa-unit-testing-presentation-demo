@@ -1,11 +1,11 @@
 package org.spring.jpa.user.impl.domain.service;
 
+import org.spring.jpa.user.application.web.security.EncryptionUtils;
 import org.spring.jpa.user.domain.error.UserAlreadyExistException;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
 import org.spring.jpa.user.domain.repository.UserRepo;
 import org.spring.jpa.user.domain.service.UserService;
-import org.spring.jpa.user.application.web.security.EncryptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +28,12 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UserNotFoundException("User not found: " + email));
     }
 
-    public Long registerUser(User user) throws UserAlreadyExistException {
+    public User registerUser(User user) throws UserAlreadyExistException {
 
         if(userRepo.findByEmail(user.getEmail()).isPresent()) {
             throw new UserAlreadyExistException("User already exists: " + user.getEmail());
         }else{
-            return userRepo.save(user).getId();
+            return userRepo.save(user);
         }
 
     }

@@ -50,11 +50,17 @@ public class UserController {
     @PostMapping("/register")
     public String register(@ModelAttribute("user") UserRegistrationVO userRegistrationVO) {
         try {
-            User user = new User();
-            user.setEmail(userRegistrationVO.getEmail());
-            user.setPassword(encryptionUtils.encrypt(userRegistrationVO.getPassword()));
-            user.setUsername(userRegistrationVO.getUsername());
-            userService.registerUser(user);
+            if(userRegistrationVO.getPassword().equals(userRegistrationVO.getMatchingPassword())){
+                final String salt = encryptionUtils.getSalt();
+                User user = new User();
+                user.setEmail(userRegistrationVO.getEmail());
+                user.setPassword(encryptionUtils.encrypt(userRegistrationVO.getPassword(), salt));
+                user.setSalt(salt);
+                user.setUsername(userRegistrationVO.getUsername());
+                userService.registerUser(user);
+            }else{
+                return "registration";
+            }
             return "homepage";
         } catch (UserAlreadyExistException e) {
             return "registration";

@@ -5,17 +5,22 @@ import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
-import java.util.Arrays;
 
 @Service
 public class EncryptionUtilsImpl implements EncryptionUtils {
 
     private static final int SALT_LENGTH = 6;
 
-    public String encrypt(String password) {
+    private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+    private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
+    private static final String NUMBER = "0123456789";
+    private static final String DATA_FOR_RANDOM_STRING = CHAR_LOWER + CHAR_UPPER + NUMBER;
+    private static final SecureRandom random = new SecureRandom();
+
+    public String encrypt(String password, String salt) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-            messageDigest.update((password + Arrays.toString(saltGenerator())).getBytes());
+            messageDigest.update((password  + ":" + salt).getBytes());
             byte[] hash = messageDigest.digest();
             StringBuilder hexString = new StringBuilder();
             for (byte b : hash) {
@@ -28,24 +33,24 @@ public class EncryptionUtilsImpl implements EncryptionUtils {
     }
     public Boolean matches(String password, String encodedPassword, String salt) {
         try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
-            messageDigest.update((password + ":" + salt).getBytes());
-            byte[] hash = messageDigest.digest();
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                hexString.append(String.format("%02x", b));
-            }
-            return hexString.toString().equals(encodedPassword);
+            return encrypt(password, salt).equals(encodedPassword);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private static byte[] saltGenerator() {
-        SecureRandom secureRandom = new SecureRandom();
-        byte[] salt = new byte[SALT_LENGTH];
-        secureRandom.nextBytes(salt);
-        return salt;
+    public String getSalt() {
+        if (SALT_LENGTH < 1) throw new IllegalArgumentException();
+
+        StringBuilder sb = new StringBuilder(SALT_LENGTH);
+        for (int i = 0; i < SALT_LENGTH; i++) {
+            int rndCharAt = random.nextInt(DATA_FOR_RANDOM_STRING.length());
+            char rndChar = DATA_FOR_RANDOM_STRING.charAt(rndCharAt);
+            sb.append(rndChar);
+        }
+
+        return sb.toString();
     }
+
 
 }
