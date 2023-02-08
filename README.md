@@ -54,6 +54,11 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 - javax validation
 
 # Todo
+
+- commons-codec
+- Java Stream: filter, map, reduce, collect, flatMap etc
+- Specification Design Pattern
+- Javax/Jakarta Validation
 - Add test container for integration testing
 
 
