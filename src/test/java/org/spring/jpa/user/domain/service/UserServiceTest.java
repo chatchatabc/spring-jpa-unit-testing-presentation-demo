@@ -8,7 +8,6 @@ import org.mockito.Mock;
 import org.spring.jpa.user.SpringBaseTest;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
-import org.spring.jpa.user.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
