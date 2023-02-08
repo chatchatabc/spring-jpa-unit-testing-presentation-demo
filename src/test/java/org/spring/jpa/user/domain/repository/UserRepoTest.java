@@ -17,11 +17,14 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.BDDAssertions.thenCode;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class UserRepoTest extends SpringBaseTest {
+
 
     final UserRepo userRepo;
     @Spy
@@ -33,6 +36,9 @@ public class UserRepoTest extends SpringBaseTest {
 
     User user;
 
+    /**
+     * JUnit5: Executes before each test
+     */
     @BeforeEach
     void createNewUserInstance() {
         user = Instancio.create(User.class);
@@ -44,6 +50,9 @@ public class UserRepoTest extends SpringBaseTest {
         this.userRepo = userRepo;
     }
 
+    /**
+     * Database Rider and AssertJ
+     */
     @Test
     @DataSet("db/datasets/users.xml")
     void findUserByEmailTest() {
@@ -51,6 +60,9 @@ public class UserRepoTest extends SpringBaseTest {
         assertThat(result.isEmpty()).isFalse();
     }
 
+    /**
+     * Database Rider and AssertJ
+     */
     @Test
     @DataSet("db/datasets/users.xml")
     @ExportDataSet(format = DataSetFormat.XML, outputName = "target/exported/xml/allTables.xml")
@@ -61,7 +73,9 @@ public class UserRepoTest extends SpringBaseTest {
         assertThat(result).filteredOn(user -> user.getEmail().equals("admin@email.com")).isNotEmpty();
     }
 
-
+    /**
+     * Spring Test and AssertJ
+     */
     @Test
     @Transactional
     void addUser() {
@@ -69,6 +83,9 @@ public class UserRepoTest extends SpringBaseTest {
         assertThat(userRepo.findByEmail(user.getEmail())).isPresent();
     }
 
+    /**
+     * Spring Test, Mockito, and AssertJ
+     */
     @Test
     void testFindUserMock() {
 //        when(userRepoMock.findByEmail(any(String.class))).thenThrow(new UserNotFoundException("User not found"));
@@ -76,9 +93,12 @@ public class UserRepoTest extends SpringBaseTest {
         assertThat(userRepoMock.findByEmail("admin@email.com")).isNotNull();
         assertThatThrownBy(() -> userRepoMock.findByEmail("badword@email.com")).isInstanceOf(UserNotFoundException.class);
         verify(userRepoMock).findByEmail("badword@email.com");
-        assertThatCode(() -> userRepoMock.findByEmail("badword@email.com")).doesNotThrowAnyException();
+        thenCode(() -> userRepoMock.findByEmail("badword@email.com")).doesNotThrowAnyException();
     }
 
+    /**
+     * Spring Test and AssertJ
+     */
     @Transactional
     @Test
     void testFindUserEntityManager() {

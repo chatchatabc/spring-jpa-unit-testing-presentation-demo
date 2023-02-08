@@ -19,9 +19,15 @@ class UserControllerTest extends SpringBaseTest {
     @Autowired
     private MockMvc mockMvc;
 
+
+    /**
+     * Test login page using Spring Test MockMVC
+     *
+     */
     @Test
     void testLoginPage() throws Exception {
         this.mockMvc.perform(get("/login")).andDo(print()).andExpect(status().isOk());
+
     }
 
     @Test

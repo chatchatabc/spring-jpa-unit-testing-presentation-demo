@@ -1,7 +1,7 @@
 package org.spring.jpa.user.application.web;
 
 import org.spring.jpa.user.application.common.vo.UserRegistrationVO;
-import org.spring.jpa.user.application.web.security.EncryptionUtils;
+import org.spring.jpa.user.application.web.security.CodecUtils;
 import org.spring.jpa.user.domain.error.UserAlreadyExistException;
 import org.spring.jpa.user.domain.error.UserNotFoundException;
 import org.spring.jpa.user.domain.model.User;
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     private final UserService userService;
-    private final EncryptionUtils encryptionUtils;
+    private final CodecUtils codecUtils;
 
     @Autowired
-    public UserController(UserService userService, EncryptionUtils encryptionUtils) {
-        this.encryptionUtils = encryptionUtils;
+    public UserController(UserService userService, CodecUtils codecUtils) {
+        this.codecUtils = codecUtils;
         this.userService = userService;
     }
 
@@ -52,10 +52,10 @@ public class UserController {
     public String register(@ModelAttribute("user") UserRegistrationVO userRegistrationVO) {
         try {
             if(userRegistrationVO.getPassword().equals(userRegistrationVO.getMatchingPassword())){
-                final String salt = encryptionUtils.generateSalt();
+                final String salt = codecUtils.generateSalt();
                 User user = new User();
                 user.setEmail(userRegistrationVO.getEmail());
-                user.setPassword(encryptionUtils.encrypt(userRegistrationVO.getPassword(), salt));
+                user.setPassword(codecUtils.hash(userRegistrationVO.getPassword(), salt));
                 user.setSalt(salt);
                 user.setUsername(userRegistrationVO.getUsername());
                 userService.registerUser(user);

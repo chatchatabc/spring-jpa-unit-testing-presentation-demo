@@ -1,11 +1,76 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Ant Design imports -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.9.0/antd.min.css" integrity="sha512-2QbvCjKWm/0oCJ0XRzzRKjMkL0+8j6n5dCCx+l6U1n5UeuxLqz+QF1JfklzukYnPfGTbZiv4jPvkwBgWQG1Lw==" crossorigin="anonymous" />
+
 <!--/*@thymesVar id="user" type="org.spring.jpa.user.domain.model.User"*/-->
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-Welcome <span th:text="${user.username}">Name</span>
+<!-- Header with logout button -->
+<header>
+    <h1>My Profile</h1>
+    <div>
+        <button type="button" class="ant-btn ant-btn-primary">
+            Logout
+        </button>
+    </div>
+</header>
+<!-- Profile display UI -->
+<div class="profile-container">
+    Welcome <span th:text="${user.username}">Name</span>
+    <img src="profile_picture.jpg" alt="Profile Picture" class="profile-picture">
+    <h1 class="username">John Doe</h1>
+    <p class="bio">A software engineer based in New York.</p>
+    <div class="contact-info">
+        <p><i class="fa fa-envelope"></i> johndoe@email.com</p>
+        <p><i class="fa fa-phone"></i> (555) 555-5555</p>
+        <p><i class="fa fa-map-marker"></i> New York, NY</p>
+    </div>
+</div>
+
 </body>
+<!-- Style for the profile display -->
+<style>
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .profile-picture {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+
+    .username {
+        font-size: 36px;
+        margin-top: 20px;
+    }
+
+    .bio {
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+        width: 60%;
+    }
+
+    .contact-info {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info p {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+</style>
 </html>
+
+

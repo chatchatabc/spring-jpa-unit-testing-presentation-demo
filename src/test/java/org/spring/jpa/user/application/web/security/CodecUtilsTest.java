@@ -6,21 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-class EncryptionUtilsTest extends SpringBaseTest {
+class CodecUtilsTest extends SpringBaseTest {
 
 
-    final EncryptionUtils encryptionUtils;
+    final CodecUtils codecUtils;
 
     @Autowired
-    private EncryptionUtilsTest(EncryptionUtils encryptionUtils) {
-        this.encryptionUtils = encryptionUtils;
+    private CodecUtilsTest(CodecUtils codecUtils) {
+        this.codecUtils = codecUtils;
     }
 
-
+    /**
+     * AssertJ Test
+     */
     @Test
     void encryptTest() {
         String password = "123";
-        assertThat(encryptionUtils.encrypt(password, encryptionUtils.generateSalt()).isEmpty()).isFalse();
+        String hashed = codecUtils.hash(password, "2i3u423");
+        System.out.println(hashed);
+        assertThat(hashed.isEmpty()).isFalse();
 
     }
 }

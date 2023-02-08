@@ -18,13 +18,20 @@ import java.io.FileOutputStream;
  */
 public class DataBaseTest extends SpringBaseTest {
 
-
+    /**
+     * Database Rider and JUnit5
+     * test if database is ready
+     */
     @Test
     @DataSet("db/datasets/users.xml")
     public void testLoadDataset() {
         Assertions.assertTrue(true);
     }
 
+    /**
+     * Database Rider and JUnit5
+     * generate database.dtd to detect database changes
+     */
     @Test
     public void testDTDGeneration(@Autowired DataSource dataSource) throws Exception {
         DatabaseConnection databaseConnection = new DatabaseConnection(dataSource.getConnection());
