@@ -27,8 +27,8 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
     * Mockito
     * Database Rider
     * Flyway
-    * Data Faker
-    * Test Container
+    * Instancio
+    * Selenide
 
 
 # Getting Started
