@@ -51,14 +51,11 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
     
 # Issues
 - [Data Faker](https://github.com/datafaker-net/datafaker/)
-- javax validation
+- selenide (selenium) is not working with spring boot 2.7.5, might be due to guava version conflict
 
 # Todo
 
-- commons-codec
 - Java Stream: filter, map, reduce, collect, flatMap etc
-- Specification Design Pattern
-- Javax/Jakarta Validation
 - Add test container for integration testing
 
 

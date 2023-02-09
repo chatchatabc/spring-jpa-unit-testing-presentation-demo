@@ -1,11 +1,16 @@
 package org.spring.jpa.user.application.web;
 
+import com.codeborne.selenide.Config;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.spring.jpa.user.SpringBaseTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -28,6 +33,16 @@ class UserControllerTest extends SpringBaseTest {
     void testLoginPage() throws Exception {
         this.mockMvc.perform(get("/login")).andDo(print()).andExpect(status().isOk());
 
+    }
+
+    @Test
+    void testLoginButton() {
+        open("https://google.com");
+
+//        $(By.name("email")).setValue("admin@example.com");
+//        $(By.name("password")).setValue("123");
+//        $("#submit").click();
+//        $("#labelName").shouldHave(text("Welcome admin!"));
     }
 
     @Test

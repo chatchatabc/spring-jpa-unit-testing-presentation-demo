@@ -47,6 +47,7 @@ public class UserServiceTest extends SpringBaseTest {
                 .contains(expectedVal);
     }
 
+
     /**
      * Database Rider and JUnit5
      * Auth User Test
