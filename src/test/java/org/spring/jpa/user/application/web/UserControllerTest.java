@@ -1,16 +1,21 @@
 package org.spring.jpa.user.application.web;
 
-import com.codeborne.selenide.Config;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.spring.jpa.user.SpringBaseTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -24,6 +29,14 @@ class UserControllerTest extends SpringBaseTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private WebDriver driver;
+
+    @BeforeEach
+    public void setUp() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+    }
+
 
     /**
      * Test login page using Spring Test MockMVC
@@ -35,14 +48,20 @@ class UserControllerTest extends SpringBaseTest {
 
     }
 
+    /**
+     * Test login page using Selenium
+     *
+     */
     @Test
-    void testLoginButton() {
-        open("https://google.com");
-
-//        $(By.name("email")).setValue("admin@example.com");
-//        $(By.name("password")).setValue("123");
-//        $("#submit").click();
-//        $("#labelName").shouldHave(text("Welcome admin!"));
+    void clickLoginButtonTest() {
+        driver.get("http://192.168.1.20:8080/");
+        WebElement inputEmail = driver.findElement(By.id("email"));
+        inputEmail.sendKeys("admin@example.com");
+        WebElement inputPassword = driver.findElement(By.id("password"));
+        inputPassword.sendKeys("123");
+        WebElement loginButton = driver.findElement(By.id("submit"));
+        loginButton.click();
+        assert  driver.getCurrentUrl().endsWith("/home");
     }
 
     @Test
@@ -61,5 +80,10 @@ class UserControllerTest extends SpringBaseTest {
     void testDoRegister() throws Exception {
         this.mockMvc.perform(post("/register").param("username", "admin").param("email", "admin@example.com").param("password", "123").param("matchingPassword", "123"))
                 .andExpect(view().name("homepage"));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
     }
 }

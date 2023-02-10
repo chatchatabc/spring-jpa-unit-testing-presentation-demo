@@ -28,7 +28,8 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
     * Database Rider
     * Flyway
     * Instancio
-    * Selenide
+    * Selenium
+    * MockMvc
 
 
 # Getting Started
@@ -51,12 +52,11 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
     
 # Issues
 - [Data Faker](https://github.com/datafaker-net/datafaker/)
-- selenide (selenium) is not working with spring boot 2.7.5, might be due to guava version conflict
+- Not using selenide, only selenium due to httpclient5 dependency version conflict.
 
 # Todo
 
 - Java Stream: filter, map, reduce, collect, flatMap etc
-- Add test container for integration testing
 
 
 # References
