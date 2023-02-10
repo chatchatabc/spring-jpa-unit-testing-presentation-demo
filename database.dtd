@@ -1,34 +1,7 @@
 <!ELEMENT dataset (
-    databasechangelog*,
-    databasechangeloglock*,
     flyway_schema_history*,
     users*)>
 
-<!ELEMENT databasechangelog EMPTY>
-<!ATTLIST databasechangelog
-    id CDATA #REQUIRED
-    author CDATA #REQUIRED
-    filename CDATA #REQUIRED
-    dateexecuted CDATA #REQUIRED
-    orderexecuted CDATA #REQUIRED
-    exectype CDATA #REQUIRED
-    md5sum CDATA #IMPLIED
-    description CDATA #IMPLIED
-    comments CDATA #IMPLIED
-    tag CDATA #IMPLIED
-    liquibase CDATA #IMPLIED
-    contexts CDATA #IMPLIED
-    labels CDATA #IMPLIED
-    deployment_id CDATA #IMPLIED
->
-
-<!ELEMENT databasechangeloglock EMPTY>
-<!ATTLIST databasechangeloglock
-    id CDATA #REQUIRED
-    locked CDATA #REQUIRED
-    lockgranted CDATA #IMPLIED
-    lockedby CDATA #IMPLIED
->
 
 <!ELEMENT flyway_schema_history EMPTY>
 <!ATTLIST flyway_schema_history
