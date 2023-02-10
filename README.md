@@ -53,6 +53,7 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 # Issues
 - [Data Faker](https://github.com/datafaker-net/datafaker/)
 - Not using selenide, only selenium due to httpclient5 dependency version conflict.
+- flyway migration not working as intended
 
 # Todo
 
