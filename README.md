@@ -16,6 +16,7 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 
 * Login page
 * Registration page
+* Profile page
 * Will add more in the future
 
 # Tools
