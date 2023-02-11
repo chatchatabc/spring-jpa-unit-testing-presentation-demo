@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     public User registerUser(User user) throws UserAlreadyExistException {
 
-        if(userSpec.isUserExist(user.getEmail())){
+        if(userSpec.isEmailExist(user.getEmail())){
             throw new UserAlreadyExistException("User already exists: " + user.getEmail());
         }else{
             return userRepo.save(user);

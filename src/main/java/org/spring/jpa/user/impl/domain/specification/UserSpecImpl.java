@@ -18,7 +18,7 @@ public class UserSpecImpl implements UserSpec {
     /**
      * check if user exists implementation
      */
-    public Boolean isUserExist(String email) {
+    public Boolean isEmailExist(String email) {
         return userRepo.findByEmail(email).isPresent();
     }
 }

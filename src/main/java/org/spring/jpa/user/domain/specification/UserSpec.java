@@ -4,5 +4,5 @@ public interface UserSpec {
     /**
      * check if user exists
      */
-    Boolean isUserExist(String email);
+    Boolean isEmailExist(String email);
 }
