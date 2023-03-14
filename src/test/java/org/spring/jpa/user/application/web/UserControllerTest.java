@@ -66,9 +66,9 @@ class UserControllerTest extends SpringBaseTest {
 
     @Test
     void testDoLogin() throws Exception {
-        this.mockMvc.perform(post("/login").param("email", "admin@email.com").param("password", "123"))
+        this.mockMvc.perform(post("/login").param("email", "admin@example.com").param("password", "123"))
                 .andExpect(view().name("homepage"));
-        this.mockMvc.perform(post("/login").param("email", "admin@email.com").param("password", "1234"))
+        this.mockMvc.perform(post("/login").param("email", "admin@example.com").param("password", "1234"))
                 .andExpect(view().name("login"));
     }
 

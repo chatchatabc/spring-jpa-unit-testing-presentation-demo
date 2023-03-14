@@ -18,12 +18,13 @@
         <java.version>17</java.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
         <commons-codec.version>1.15</commons-codec.version>
+        <guava.version>31.1-jre</guava.version>
         <!-- Test -->
         <rider-spring.version>1.35.0</rider-spring.version>
         <datafaker.version>1.7.0</datafaker.version>
         <instancio-junit.version>2.6.0</instancio-junit.version>
         <selenide.version>6.11.2</selenide.version>
-        <guava.version>31.1-jre</guava.version>
+
     </properties>
     <dependencies>
 

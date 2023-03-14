@@ -54,6 +54,7 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 # Issues
 - [Data Faker](https://github.com/datafaker-net/datafaker/)
 - Not using selenide, only selenium due to httpclient5 dependency version conflict.
+- Selenium not working due to unavailable chronium driver for current version of chrome yet
 - flyway migration not working as intended
 
 # Todo
@@ -63,7 +64,6 @@ Basic login-register web app to demonstrate how to use JPA and JDBC with Spring 
 
 # References
  - [Thymeleaf](https://www.baeldung.com/thymeleaf-in-spring-mvc)
- - [How to use spring security](https://www.baeldung.com/security-none-filters-none-access-permitAll)
  - [Make a registration page with spring](https://www.baeldung.com/registration-with-spring-mvc-and-spring-security)
  - [Making a login page with spring](https://www.baeldung.com/spring-security-login)
  - [JPA and JDBC with Spring Guide](https://www.jpa-buddy.com/blog/spring-data-jpa-to-spring-data-jdbc-a-smooth-ride/)

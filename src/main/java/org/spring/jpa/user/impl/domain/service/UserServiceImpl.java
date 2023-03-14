@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     final UserSpec userSpec;
 
     @Autowired
-    private UserServiceImpl(UserRepo userRepo ,CodecUtils codecUtils, UserSpec userSpec) {
+    private UserServiceImpl(UserRepo userRepo, CodecUtils codecUtils, UserSpec userSpec) {
         this.userRepo = userRepo;
         this.codecUtils = codecUtils;
         this.userSpec = userSpec;
