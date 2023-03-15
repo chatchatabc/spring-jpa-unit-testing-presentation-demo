@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserSpecImpl implements UserSpec {
 
-    UserRepo userRepo;
+    final UserRepo userRepo;
 
     @Autowired
     public UserSpecImpl(UserRepo userRepo) {

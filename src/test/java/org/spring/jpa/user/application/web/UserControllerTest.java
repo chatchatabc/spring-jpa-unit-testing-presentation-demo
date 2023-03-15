@@ -1,10 +1,7 @@
 package org.spring.jpa.user.application.web;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -29,12 +26,16 @@ class UserControllerTest extends SpringBaseTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private WebDriver driver;
+    WebDriver driver;
+
+    UserControllerTest(WebDriver driver) {
+        this.driver = driver;
+    }
 
     @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
     }
 
 

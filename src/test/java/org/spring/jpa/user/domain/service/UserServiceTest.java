@@ -73,9 +73,9 @@ public class UserServiceTest extends SpringBaseTest {
      */
     @Test
     public void mockCreateUserTest() {
-        when(userServiceMock.mockMethod(user)).thenReturn(1000L);
-        assertThat(userServiceMock.mockMethod(user)).isEqualTo(1000L);
-        verify(userServiceMock).mockMethod(user);
+        when(userServiceMock.mockMethod()).thenReturn(1000L);
+        assertThat(userServiceMock.mockMethod()).isEqualTo(1000L);
+        verify(userServiceMock).mockMethod();
     }
 
 }
