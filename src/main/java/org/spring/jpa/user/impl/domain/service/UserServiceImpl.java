@@ -43,9 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long mockMethod(User user) {
-        return 2000L;
+    public Long mockMethod() {
+        return 20L;
     }
-
 
 }

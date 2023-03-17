@@ -7,4 +7,5 @@ public interface CodecUtils {
     String hash(String password, String salt);
 
     Boolean matches(String password, String hashedPass, String salt);
+
 }
